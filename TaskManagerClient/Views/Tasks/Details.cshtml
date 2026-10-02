@@ -1,0 +1,11 @@
+@model TaskItem
+@{ ViewData["Title"] = "Задача"; }
+<a asp-action="Index" class="back-link">← К списку задач</a>
+<section class="form-card detail-card">
+    <span class="eyebrow">ЗАДАЧА №@Model.Id · GET /api/tasks/@Model.Id</span>
+    <h1>@Model.Title</h1>
+    <p class="detail-description">@Model.Description</p>
+    <span class="status-pill @(Model.IsCompleted ? "done" : "pending")"><span></span>@(Model.IsCompleted ? "Выполнено" : "В работе")</span>
+    <hr />
+    <div class="d-flex gap-2"><a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Изменить</a><a asp-action="Index" class="btn btn-outline-secondary">Назад к списку</a></div>
+</section>

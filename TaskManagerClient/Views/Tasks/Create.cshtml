@@ -1,0 +1,13 @@
+@model TaskItem
+@{ ViewData["Title"] = "Добавить задачу"; }
+<a asp-action="Index" class="back-link">← К списку задач</a>
+<section class="form-card">
+    <span class="eyebrow">НОВАЯ ЗАПИСЬ · POST</span>
+    <h1>Добавить задачу</h1>
+    <p class="text-muted">Заполните данные, задача будет отправлена во внешний Web API.</p>
+    <form asp-action="Create" method="post">
+        <partial name="_TaskForm" model="Model" />
+        <div class="d-flex gap-2"><button class="btn btn-primary btn-lg" type="submit">Создать задачу</button><a asp-action="Index" class="btn btn-outline-secondary btn-lg">Отмена</a></div>
+    </form>
+</section>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

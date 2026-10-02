@@ -1,0 +1,12 @@
+@model TaskItem
+@{ ViewData["Title"] = "Удаление задачи"; }
+<a asp-action="Index" class="back-link">← К списку задач</a>
+<section class="form-card delete-card">
+    <span class="eyebrow">ПОДТВЕРЖДЕНИЕ · DELETE</span>
+    <h1>Удалить задачу?</h1>
+    <p class="text-muted">Это действие удалит задачу из Web API. Подтвердите удаление.</p>
+    <div class="delete-preview"><span class="task-id">@Model.Id.ToString("00")</span><div><strong>@Model.Title</strong><p>@Model.Description</p></div></div>
+    <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+        <div class="d-flex gap-2"><button class="btn btn-danger btn-lg" type="submit">Да, удалить</button><a asp-action="Index" class="btn btn-outline-secondary btn-lg">Оставить задачу</a></div>
+    </form>
+</section>

@@ -1,0 +1,13 @@
+@model TaskItem
+@{ ViewData["Title"] = "Изменить задачу"; }
+<a asp-action="Index" class="back-link">← К списку задач</a>
+<section class="form-card">
+    <span class="eyebrow">ЗАДАЧА №@Model.Id · PUT</span>
+    <h1>Изменить задачу</h1>
+    <p class="text-muted">Обновите название, описание и статус задачи.</p>
+    <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+        <partial name="_TaskForm" model="Model" />
+        <div class="d-flex gap-2"><button class="btn btn-primary btn-lg" type="submit">Сохранить изменения</button><a asp-action="Index" class="btn btn-outline-secondary btn-lg">Отмена</a></div>
+    </form>
+</section>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

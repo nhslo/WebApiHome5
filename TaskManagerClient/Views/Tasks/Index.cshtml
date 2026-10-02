@@ -1,0 +1,51 @@
+@model IReadOnlyList<TaskItem>
+@{
+    ViewData["Title"] = "Список задач";
+}
+
+<section class="hero-panel mb-4">
+    <div>
+        <span class="eyebrow">TASK MANAGER · WEB API CLIENT</span>
+        <h1>Список задач</h1>
+        <p>Задачи загружаются из отдельного ASP.NET Core Web API через IHttpClientFactory.</p>
+    </div>
+    <a class="btn btn-light btn-lg" asp-action="Create">＋ Добавить задачу</a>
+</section>
+
+@if (ViewBag.Error is not null || TempData["Error"] is not null)
+{
+    <div class="alert alert-danger" role="alert">@(ViewBag.Error ?? TempData["Error"])</div>
+}
+@if (TempData["Success"] is not null)
+{
+    <div class="alert alert-success" role="status">@TempData["Success"]</div>
+}
+
+<div class="d-flex justify-content-between align-items-end mb-3">
+    <div><span class="eyebrow text-muted">ВАШ ПРОГРЕСС</span><h2 class="section-title mb-0">Все задачи <span class="count-badge">@Model.Count</span></h2></div>
+    <span class="api-chip">API · @ViewBag.ApiAddress</span>
+</div>
+
+<div class="task-list">
+    @if (Model.Count == 0)
+    {
+        <div class="empty-state">Задачи не найдены. Добавьте первую задачу.</div>
+    }
+    @foreach (var task in Model)
+    {
+        <article class="task-row">
+            <div class="task-id">@task.Id.ToString("00")</div>
+            <div class="task-content">
+                <a class="task-title" asp-action="Details" asp-route-id="@task.Id">@task.Title</a>
+                <p>@task.Description</p>
+            </div>
+            <span class="status-pill @(task.IsCompleted ? "done" : "pending")"><span></span>@(task.IsCompleted ? "Выполнено" : "В работе")</span>
+            <div class="task-actions">
+                <a asp-action="Edit" asp-route-id="@task.Id" title="Изменить">Изменить</a>
+                <a class="delete-link" asp-action="Delete" asp-route-id="@task.Id" title="Удалить">Удалить</a>
+            </div>
+        </article>
+    }
+</div>
+
+<footer class="page-note">Изменения выполняются через GET, POST, PUT и DELETE запросы к Web API.</footer>
