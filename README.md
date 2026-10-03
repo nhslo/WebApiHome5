@@ -25,29 +25,6 @@
 | 6. Обработка ответов | Обрабатываются успешные ответы, 400, 404, 500 и ошибки соединения | Ошибки показываются пользователю понятным текстом |
 | 7. Проверка | В браузере выполнены просмотр списка и задачи, создание, изменение статуса и удаление | Снимки реальных операций приложены ниже |
 
-## Адрес API
-
-Локальный адрес API: `http://127.0.0.1:5083/`  
-Swagger API: `http://127.0.0.1:5083/swagger`  
-Адрес задаётся в `TaskManagerClient/appsettings.json` в параметре `TaskApi:BaseAddress`.
-
-## Запуск
-
-Нужен .NET 8 SDK. Из корня репозитория откройте два окна PowerShell.
-
-Окно 1 — API:
-
-```powershell
-dotnet run --project .\TaskManagerApi\TaskManagerApi.csproj --urls http://127.0.0.1:5083
-```
-
-Окно 2 — клиент:
-
-```powershell
-dotnet run --project .\TaskManagerClient\TaskManagerClient.csproj --urls http://127.0.0.1:5084
-```
-
-Откройте клиент: `http://127.0.0.1:5084`.
 
 ## HTTP-методы
 
